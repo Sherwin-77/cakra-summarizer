@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+	<title>Cakra Summarizer</title>
+	<link rel="stylesheet" href="./assets/css/main.css">
+	<script src="https://code.jquery.com/jquery-3.7.1.min.js"
+		integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+</head>
+
+<body>
+
+	<!-- AppBar -->
+	<div class="w-100 p-3 d-inline-flex justify-content-between" style="background-color: black; color: white">
+		<div class="font-weight-bold">
+			<img src="./assets/images/logo-full-white.png" alt="" style="width: 30px; margin-right: 4px">
+			CAKRA
+		</div>
+		<div class="font-weight-bold">
+			AI Summarizer
+		</div>
+		<div class="w-20" style="color: black">
+			AI Summarizer
+		</div>
+	</div>
+
+	<!-- Body -->
+	<div class="container" style="width: 80%;">
+		<div style="background-color: white; /*border: 1px solid black;*/ margin-top: 10px; display: flex">
+			<form class="col-sm border mr-1 p-3 d-flex-column" id="input-form" novalidate>
+				<div class="mb-2 ">
+					<div class="d-flex mb-3">
+						<div class="me-auto">
+							<button class="btn btn-outline-dark rounded-pill" id="example-text-button">Example
+								Text</button>
+							<div class="btn btn-outline-dark rounded-pill" style="width: 60px; height: 100%;"
+								id="clear-button">
+								<div class="center h-100">
+									<svg width="24px" height="24px" viewBox="0 0 24 24" fill="none"
+										xmlns="http://www.w3.org/2000/svg">
+										<path
+											d="M4 6H20L18.4199 20.2209C18.3074 21.2337 17.4512 22 16.4321 22H7.56786C6.54876 22 5.69264 21.2337 5.5801 20.2209L4 6Z"
+											stroke="currentcolor" stroke-width="2" stroke-linecap="round"
+											stroke-linejoin="round" />
+										<path
+											d="M7.34491 3.14716C7.67506 2.44685 8.37973 2 9.15396 2H14.846C15.6203 2 16.3249 2.44685 16.6551 3.14716L18 6H6L7.34491 3.14716Z"
+											stroke="currentcolor" stroke-width="2" stroke-linecap="round"
+											stroke-linejoin="round" />
+										<path d="M2 6H22" stroke="currentcolor" stroke-width="2" stroke-linecap="round"
+											stroke-linejoin="round" />
+										<path d="M10 11V16" stroke="currentcolor" stroke-width="2"
+											stroke-linecap="round" stroke-linejoin="round" />
+										<path d="M14 11V16" stroke="currentcolor" stroke-width="2"
+											stroke-linecap="round" stroke-linejoin="round" />
+									</svg>
+								</div>
+							</div>
+						</div>
+
+						<div>
+							<button class="btn btn-dark rounded-20" id="summarize-button"
+								type="submit">Summarize</button>
+						</div>
+					</div>
+					<small class="text-muted" style="font-style: italic;">Copy and paste your text here</small>
+				</div>
+
+				<div data-mdb-input-init class="form-outline mb-3">
+					<textarea class="form-control" id="input-text" name="payload" rows="10"
+						style="background-color: white; resize: none" required></textarea>
+					<label class="form-label" for="input-text"></label>
+				</div>
+
+				<span>
+					<b id="charCount">0</b>
+					Characters
+				</span>
+			</form>
+
+			<div class="col-sm border ml-1 p-3">
+				<div class="d-flex justify-content-between mb-3" style="height: 70px;">
+					<h2 style="opacity: 0; display: block">Res</h2>
+					<h2 style=" display: block">Results</h2>
+					<div class="btn btn-outline-dark rounded-pill" style="height: 40px; width: 60px;" id="copy-button">
+						<div class="center h-100">
+							<svg fill="currentcolor" width="18px" height="18px" version="1.1" id="Capa_1"
+								xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+								viewBox="0 0 352.804 352.804" xml:space="preserve">
+								<g>
+									<path d="M318.54,57.282h-47.652V15c0-8.284-6.716-15-15-15H34.264c-8.284,0-15,6.716-15,15v265.522c0,8.284,6.716,15,15,15h47.651
+			v42.281c0,8.284,6.716,15,15,15H318.54c8.284,0,15-6.716,15-15V72.282C333.54,63.998,326.824,57.282,318.54,57.282z
+			 M49.264,265.522V30h191.623v27.282H96.916c-8.284,0-15,6.716-15,15v193.24H49.264z M303.54,322.804H111.916V87.282H303.54V322.804
+			z" />
+								</g>
+							</svg>
+						</div>
+					</div>
+				</div>
+
+				<div data-mdb-input-init class="form-outline">
+					<div class="placeholder-glow position-relative">
+						<span class="position-absolute placeholder col-6 loader" style="top: 5%; left: 5%;"></span>
+						<span class="position-absolute placeholder col-8 loader" style="top: 20%; left: 5%;"></span>
+						<span class="position-absolute placeholder col-10 loader" style="top: 35%; left: 5%;"></span>
+						<span class="position-absolute placeholder col-6 loader" style="top: 50%; left: 5%;"></span>
+						<span class="position-absolute placeholder col-10 loader" style="top: 65%; left: 5%;"></span>
+						<textarea class="form-control" id="result-text" rows="10" readonly placeholder="AI Result"
+							style="background-color: #f8f8ff; resize: none;">
+							</textarea>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	</div>
+	<div class="toast-container position-absolute top-0 end-0 p-3">
+		<div class="toast align-items-center" data-bs-delay="1000" role="alert" aria-live="assertive" aria-atomic="true" id="copiedTextToast">
+			<div class="d-flex">
+				<div class="toast-body">
+					Text Copied
+				</div>
+				<button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+			</div>
+		</div>
+	</div>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+		crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.js"></script>
+	<script type="module" src="./assets/js/main.js"></script>
+</body>
+
+</html>

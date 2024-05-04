@@ -1,0 +1,25 @@
+body {
+    background-color: #f8f8f8;
+}
+
+.center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.btn-cakra {
+    background-color: white;
+    border-color: black;
+    border-radius: 50;
+    color: black;
+    font-weight: 20;
+}
+
+.loader {
+    display: none;
+}
+
+span.error {
+    color: red;
+}
